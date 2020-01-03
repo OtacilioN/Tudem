@@ -8,8 +8,11 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import SchoolIcon from "@material-ui/icons/School";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FaceIcon from "@material-ui/icons/Face";
-import Typography from "@material-ui/core/Typography";
+
 import "./App.css";
+import MatchList from "./components/MatchList";
+import FindStudents from "./components/FindStudents";
+import Profile from "./components/Profile";
 
 const useStyles = makeStyles({
   card: {
@@ -34,10 +37,12 @@ const useStyles = makeStyles({
   }
 });
 
+const ComponentsStack = [<MatchList />, <FindStudents />, <Profile />];
+
 function App() {
   const classes = useStyles();
 
-  const [value, setValue] = React.useState(1);
+  const [tab, setTab] = React.useState(1);
   return (
     <div className="App">
       <body className="App-body">
@@ -45,30 +50,13 @@ function App() {
           <CardContent
             style={{ flex: 1, display: "flex", flexDirection: "column" }}
           >
-            <Typography
-              className={classes.title}
-              color="textSecondary"
-              gutterBottom
-            >
-              Word of the Day
-            </Typography>
-            <Typography variant="h5" component="h2">
-              aaa
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              adjective
-            </Typography>
-            <Typography variant="body2" component="p">
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
-            </Typography>
+            {ComponentsStack[tab]}
           </CardContent>
           <CardActions style={{ display: "flex" }}>
             <BottomNavigation
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
+              value={tab}
+              onChange={(event, newTab) => {
+                setTab(newTab);
               }}
               showLabels
               style={{ flex: 1 }}
