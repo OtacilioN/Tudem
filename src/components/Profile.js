@@ -6,10 +6,14 @@ import "./Profile.css";
 import axios from "axios";
 
 const Profile = props => {
-  const [gitHubUser, setGitHubUser] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [site, setSite] = React.useState("");
-  const [bio, setBio] = React.useState("");
+  const storageData = JSON.parse(localStorage.getItem("userData")) || {};
+  const defaultImage = "https://avatars2.githubusercontent.com/u/54108471?v=4";
+
+  const [gitHubUser, setGitHubUser] = React.useState(storageData.gitHubUser);
+  const [name, setName] = React.useState(storageData.name);
+  const [site, setSite] = React.useState(storageData.site);
+  const [bio, setBio] = React.useState(storageData.bio);
+  const [image, setImage] = React.useState(storageData.image || defaultImage);
 
   const handleGitHubUserChange = event => {
     setGitHubUser(event.target.value);
@@ -29,14 +33,15 @@ const Profile = props => {
 
   const updateGitHub = () => {
     axios
-      .get("https://api.github.com/users/OtacilioN")
+      .get("https://api.github.com/users/" + gitHubUser)
       .then(function(response) {
         // handle success
         const { data } = response;
-        const { name, blog, bio, followers, public_repos } = data;
-        setName(name);
-        setSite(blog);
-        setBio(bio);
+        const { name, blog, bio, avatar_url, followers, public_repos } = data;
+        name && setName(name);
+        blog && setSite(blog);
+        bio && setBio(bio);
+        avatar_url && setImage(avatar_url);
         console.log(response);
       })
       .catch(function(error) {
@@ -48,11 +53,22 @@ const Profile = props => {
       });
   };
 
+  const saveChanges = () => {
+    const userData = { gitHubUser, name, site, bio, image };
+    localStorage.setItem("userData", JSON.stringify(userData));
+  };
+
   return (
     <div className="Profile-container">
       <Typography>Perfil do Estudante</Typography>
       <div className="Profile-info">
-        <div className="Profile-picture-wrapper"></div>
+        <div className="Profile-picture-wrapper">
+          <img
+            src={image}
+            alt="Foto de perfil"
+            style={{ height: 140, width: 140 }}
+          />
+        </div>
         <form className="Profile-flex-full" noValidate autoComplete="off">
           <div className="Profile-form-wrapper">
             <TextField
@@ -99,7 +115,9 @@ const Profile = props => {
         }}
       >
         <Button onClick={updateGitHub}>Atualizar GitHub</Button>
-        <Button color="primary">Salvar</Button>
+        <Button onClick={saveChanges} color="primary">
+          Salvar
+        </Button>
       </div>
     </div>
   );
