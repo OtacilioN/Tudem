@@ -45,7 +45,7 @@ function App() {
   const [tab, setTab] = React.useState(1);
   return (
     <div className="App">
-      <body className="App-body">
+      <div className="App-body">
         <Card className={classes.card}>
           <CardContent
             style={{ flex: 1, display: "flex", flexDirection: "column" }}
@@ -70,7 +70,7 @@ function App() {
             </BottomNavigation>
           </CardActions>
         </Card>
-      </body>
+      </div>
     </div>
   );
 }
