@@ -10,9 +10,9 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FaceIcon from "@material-ui/icons/Face";
 
 import "./App.css";
-import MatchList from "./components/MatchList";
-import FindStudents from "./components/FindStudents";
-import Profile from "./components/Profile";
+import MatchList from "./Screens/MatchList";
+import FindStudents from "./Screens/FindStudents";
+import Profile from "./Screens/Profile";
 
 const useStyles = makeStyles({
   card: {

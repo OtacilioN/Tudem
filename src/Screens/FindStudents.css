@@ -7,22 +7,17 @@
 
 .Find-text-container {
   margin: 16px;
-  margin-bottom: 22px;
+  margin-bottom: 42px;
 }
 
 .Find-text-style {
   background-color: white;
   color: black;
-  font-weight: 400;
   border-radius: 8px;
-  font-size: calc(13px + 1vmin);
 }
 
 @media only screen and (min-width: 768px) {
-  .Find-text-style {
-    margin: 0px 64px 0px 64px;
-  }
   .Find-text-container {
-    margin-bottom: 8px;
+    margin: 16px 74px 8px 74px;
   }
 }

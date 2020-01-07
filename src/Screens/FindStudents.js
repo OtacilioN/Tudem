@@ -6,16 +6,25 @@ import { Fab } from "@material-ui/core";
 import { Favorite, Cancel } from "@material-ui/icons";
 
 const FindStudents = props => {
-  // const user = mock.MichaelBarney;
   const keys = Object.keys(mock);
-  // console.log("here", Object.keys(mock));
   const [index, setIndex] = useState(0);
   const [student, setStudent] = useState(keys[0]);
 
-  const handleClick = () => {
+  const nextStudent = () => {
     const newIndex = index + 1;
     setIndex(newIndex);
     setStudent(keys[newIndex]);
+  };
+
+  const handleMatch = () => {
+    const matchList = JSON.parse(localStorage.getItem("matchList")) || {};
+    matchList[student] = {
+      name: mock[student].name,
+      whatsapp: mock[student].whatsapp,
+      image: mock[student].image
+    };
+    localStorage.setItem("matchList", JSON.stringify(matchList));
+    nextStudent();
   };
 
   return (
@@ -35,8 +44,8 @@ const FindStudents = props => {
           justifyContent: "flex-end"
         }}
       >
-        <div class="Find-text-container">
-          <Typography class="Find-text-style">
+        <div className="Find-text-container">
+          <Typography className="Find-text-style">
             {mock[student].name}: {mock[student].bio}
           </Typography>
         </div>
@@ -52,10 +61,10 @@ const FindStudents = props => {
           marginRight: "5%"
         }}
       >
-        <Fab onClick={handleClick} color="secondary" aria-label="Cancel">
+        <Fab onClick={nextStudent} color="secondary" aria-label="Cancel">
           <Cancel />
         </Fab>
-        <Fab onClick={handleClick} color="primary" aria-label="favorite">
+        <Fab onClick={handleMatch} color="primary" aria-label="favorite">
           <Favorite />
         </Fab>
       </div>

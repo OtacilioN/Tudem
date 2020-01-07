@@ -11,7 +11,7 @@ const Profile = props => {
 
   const [gitHubUser, setGitHubUser] = React.useState(storageData.gitHubUser);
   const [name, setName] = React.useState(storageData.name);
-  const [site, setSite] = React.useState(storageData.site);
+  const [whatsapp, setWhatsapp] = React.useState(storageData.whatsapp);
   const [bio, setBio] = React.useState(storageData.bio);
   const [image, setImage] = React.useState(storageData.image || defaultImage);
 
@@ -23,8 +23,8 @@ const Profile = props => {
     setName(event.target.value);
   };
 
-  const handleSiteChange = event => {
-    setSite(event.target.value);
+  const handleWhatsappChange = event => {
+    setWhatsapp(event.target.value);
   };
 
   const handleBioChange = event => {
@@ -39,7 +39,7 @@ const Profile = props => {
         const { data } = response;
         const { name, blog, bio, avatar_url, followers, public_repos } = data;
         name && setName(name);
-        blog && setSite(blog);
+        blog && setWhatsapp(blog);
         bio && setBio(bio);
         avatar_url && setImage(avatar_url);
         console.log(response);
@@ -54,7 +54,7 @@ const Profile = props => {
   };
 
   const saveChanges = () => {
-    const userData = { gitHubUser, name, site, bio, image };
+    const userData = { gitHubUser, name, whatsapp, bio, image };
     localStorage.setItem("userData", JSON.stringify(userData));
   };
 
@@ -86,11 +86,11 @@ const Profile = props => {
               label="Nome"
             />
             <TextField
-              value={site}
-              onChange={handleSiteChange}
+              value={whatsapp}
+              onChange={handleWhatsappChange}
               className="Profile-flex-full"
-              id="site"
-              label="Site"
+              id="whatsapp"
+              label="Whatsapp"
             />
           </div>
         </form>
