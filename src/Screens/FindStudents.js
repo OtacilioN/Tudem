@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Typography from "@material-ui/core/Typography";
 import mock from "../mock.json";
 import "./FindStudents.css";
@@ -30,44 +30,48 @@ const FindStudents = props => {
   return (
     <div className="Find-container">
       <Typography>Encontre Estudantes</Typography>
-      <div
-        style={{
-          margin: 8,
-          borderRadius: 16,
-          display: "flex",
-          flex: 1,
-          backgroundImage: `url(${mock[student].image})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          flexDirection: "column",
-          justifyContent: "flex-end"
-        }}
-      >
-        <div className="Find-text-container">
-          <Typography className="Find-text-style">
-            {mock[student].name}: {mock[student].bio}
-          </Typography>
-        </div>
-      </div>
-      <div
-        style={{
-          zIndex: 1,
-          marginTop: -42,
-          width: "90%",
-          display: "flex",
-          justifyContent: "space-between",
-          marginLeft: "5%",
-          marginRight: "5%"
-        }}
-      >
-        <Fab onClick={nextStudent} color="secondary" aria-label="Cancel">
-          <Cancel />
-        </Fab>
-        <Fab onClick={handleMatch} color="primary" aria-label="favorite">
-          <Favorite />
-        </Fab>
-      </div>
+      {mock[student] && (
+        <Fragment>
+          <div
+            style={{
+              margin: 8,
+              borderRadius: 16,
+              display: "flex",
+              flex: 1,
+              backgroundImage: `url(${mock[student].image})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              flexDirection: "column",
+              justifyContent: "flex-end"
+            }}
+          >
+            <div className="Find-text-container">
+              <Typography className="Find-text-style">
+                {mock[student].name}: {mock[student].bio}
+              </Typography>
+            </div>
+          </div>
+          <div
+            style={{
+              zIndex: 1,
+              marginTop: -42,
+              width: "90%",
+              display: "flex",
+              justifyContent: "space-between",
+              marginLeft: "5%",
+              marginRight: "5%"
+            }}
+          >
+            <Fab onClick={nextStudent} color="secondary" aria-label="Cancel">
+              <Cancel />
+            </Fab>
+            <Fab onClick={handleMatch} color="primary" aria-label="favorite">
+              <Favorite />
+            </Fab>
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 };
