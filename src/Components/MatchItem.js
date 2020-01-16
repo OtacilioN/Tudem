@@ -1,5 +1,4 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
 
 const MatchItem = props => {
   return (
@@ -28,8 +27,7 @@ const MatchItem = props => {
             marginLeft: 32
           }}
         >
-          <Typography>{props.name}</Typography>
-          <Typography>{props.whatsapp}</Typography>
+          {props.children}
         </div>
       </div>
     </div>

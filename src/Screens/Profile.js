@@ -2,6 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
+import { setUser } from "../Service/Firestore";
 import "./Profile.css";
 import axios from "axios";
 
@@ -37,9 +38,8 @@ const Profile = props => {
       .then(function(response) {
         // handle success
         const { data } = response;
-        const { name, blog, bio, avatar_url, followers, public_repos } = data;
+        const { name, bio, avatar_url, followers, public_repos } = data;
         name && setName(name);
-        blog && setWhatsapp(blog);
         bio && setBio(bio);
         avatar_url && setImage(avatar_url);
         console.log(response);
@@ -55,6 +55,7 @@ const Profile = props => {
 
   const saveChanges = () => {
     const userData = { gitHubUser, name, whatsapp, bio, image };
+    setUser(userData);
     localStorage.setItem("userData", JSON.stringify(userData));
   };
 

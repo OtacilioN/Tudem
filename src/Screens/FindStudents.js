@@ -1,14 +1,33 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
-import mock from "../mock.json";
 import "./FindStudents.css";
 import { Fab } from "@material-ui/core";
 import { Favorite, Cancel } from "@material-ui/icons";
+import { getUsers, likeUser } from "../Service/Firestore";
 
 const FindStudents = props => {
-  const keys = Object.keys(mock);
   const [index, setIndex] = useState(0);
-  const [student, setStudent] = useState(keys[0]);
+  const [student, setStudent] = useState();
+  const [keys, setKeys] = useState();
+  const [StudentList, setStudentList] = useState();
+
+  const getUsersKeys = async () => {
+    const users = await getUsers();
+    console.log("the users", users);
+    return Object.keys(users);
+  };
+
+  const initStudentList = async () => {
+    const userKeys = await getUsersKeys();
+    setKeys(userKeys);
+    setStudentList(await getUsers());
+    console.log("i set", userKeys[0]);
+    setStudent(userKeys[0]);
+  };
+
+  useEffect(() => {
+    initStudentList();
+  }, []);
 
   const nextStudent = () => {
     const newIndex = index + 1;
@@ -18,19 +37,21 @@ const FindStudents = props => {
 
   const handleMatch = () => {
     const matchList = JSON.parse(localStorage.getItem("matchList")) || {};
+    const userData = JSON.parse(localStorage.getItem("userData")) || {};
     matchList[student] = {
-      name: mock[student].name,
-      whatsapp: mock[student].whatsapp,
-      image: mock[student].image
+      name: StudentList[student].name,
+      whatsapp: StudentList[student].whatsapp,
+      image: StudentList[student].image
     };
     localStorage.setItem("matchList", JSON.stringify(matchList));
+    likeUser(StudentList[student], userData.gitHubUser);
     nextStudent();
   };
 
   return (
     <div className="Find-container">
       <Typography>Encontre Estudantes</Typography>
-      {mock[student] && (
+      {StudentList && StudentList[student] && (
         <Fragment>
           <div
             style={{
@@ -38,7 +59,7 @@ const FindStudents = props => {
               borderRadius: 16,
               display: "flex",
               flex: 1,
-              backgroundImage: `url(${mock[student].image})`,
+              backgroundImage: `url(${StudentList[student].image})`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -48,7 +69,7 @@ const FindStudents = props => {
           >
             <div className="Find-text-container">
               <Typography className="Find-text-style">
-                {mock[student].name}: {mock[student].bio}
+                {StudentList[student].name}: {StudentList[student].bio}
               </Typography>
             </div>
           </div>
