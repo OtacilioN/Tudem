@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b7782c1372ef739c1dff9c6b7e58dc0f",
+    "revision": "8f676444694505d9074690f351f5acd6",
     "url": "/Tudem/index.html"
   },
   {
-    "revision": "70e4a2f4f4a9f3a06c62",
+    "revision": "d5915ca1a30b93e5ae75",
     "url": "/Tudem/static/css/main.3a4a729f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Tudem/static/js/2.e50d64f4.chunk.js.LICENSE"
   },
   {
-    "revision": "70e4a2f4f4a9f3a06c62",
-    "url": "/Tudem/static/js/main.e2dfcf15.chunk.js"
+    "revision": "d5915ca1a30b93e5ae75",
+    "url": "/Tudem/static/js/main.b184c940.chunk.js"
   },
   {
     "revision": "44ccc5e1d3a0b2700d13",
