@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/Tudem/static/css/main.3a4a729f.chunk.css",
-    "main.js": "/Tudem/static/js/main.b184c940.chunk.js",
-    "main.js.map": "/Tudem/static/js/main.b184c940.chunk.js.map",
+    "main.js": "/Tudem/static/js/main.1a28a24c.chunk.js",
+    "main.js.map": "/Tudem/static/js/main.1a28a24c.chunk.js.map",
     "runtime-main.js": "/Tudem/static/js/runtime-main.3eb01c40.js",
     "runtime-main.js.map": "/Tudem/static/js/runtime-main.3eb01c40.js.map",
-    "static/js/2.e50d64f4.chunk.js": "/Tudem/static/js/2.e50d64f4.chunk.js",
-    "static/js/2.e50d64f4.chunk.js.map": "/Tudem/static/js/2.e50d64f4.chunk.js.map",
+    "static/js/2.e6c571ed.chunk.js": "/Tudem/static/js/2.e6c571ed.chunk.js",
+    "static/js/2.e6c571ed.chunk.js.map": "/Tudem/static/js/2.e6c571ed.chunk.js.map",
     "index.html": "/Tudem/index.html",
-    "precache-manifest.1cf9e133765572b6177290989fed7a4f.js": "/Tudem/precache-manifest.1cf9e133765572b6177290989fed7a4f.js",
+    "precache-manifest.e9fa980ca0a17b8cf70f9f1e1261161f.js": "/Tudem/precache-manifest.e9fa980ca0a17b8cf70f9f1e1261161f.js",
     "service-worker.js": "/Tudem/service-worker.js",
     "static/css/main.3a4a729f.chunk.css.map": "/Tudem/static/css/main.3a4a729f.chunk.css.map",
-    "static/js/2.e50d64f4.chunk.js.LICENSE": "/Tudem/static/js/2.e50d64f4.chunk.js.LICENSE"
+    "static/js/2.e6c571ed.chunk.js.LICENSE": "/Tudem/static/js/2.e6c571ed.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.3eb01c40.js",
-    "static/js/2.e50d64f4.chunk.js",
+    "static/js/2.e6c571ed.chunk.js",
     "static/css/main.3a4a729f.chunk.css",
-    "static/js/main.b184c940.chunk.js"
+    "static/js/main.1a28a24c.chunk.js"
   ]
 }
