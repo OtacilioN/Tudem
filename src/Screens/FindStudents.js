@@ -4,6 +4,7 @@ import StudentCard from "../Components/StudentCard";
 import "./FindStudents.css";
 import StudentBrief from "../Components/StudentBrief";
 import ItsAMatch from "../Components/ItsAMatch";
+import UserMissing from "../Components/UserMissing";
 
 import { getUsers, likeUser, checkLikes, setMatch } from "../Service/Firestore";
 
@@ -13,6 +14,9 @@ const FindStudents = props => {
   const [keys, setKeys] = useState();
   const [StudentList, setStudentList] = useState();
   const [isMatchHappening, setIsMatchHappening] = useState(false);
+
+  const userData = JSON.parse(localStorage.getItem("userData")) || {};
+  const { gitHubUser } = userData;
 
   const getUsersKeys = async () => {
     const users = await getUsers();
@@ -46,6 +50,7 @@ const FindStudents = props => {
     };
     localStorage.setItem("matchList", JSON.stringify(matchList));
     setMatch(StudentList[student], myId);
+    navigator.vibrate([200, 200, 400, 400, 800, 800, 200, 200]);
     setTimeout(() => {
       setIsMatchHappening(false);
       nextStudent();
@@ -53,13 +58,12 @@ const FindStudents = props => {
   };
 
   const handleLike = async () => {
-    const userData = JSON.parse(localStorage.getItem("userData")) || {};
-    likeUser(StudentList[student], userData.gitHubUser);
-    const myLikes = await checkLikes(userData.gitHubUser);
+    likeUser(StudentList[student], gitHubUser);
+    const myLikes = await checkLikes(gitHubUser);
     const isStudenInMylikesList =
       myLikes && myLikes[StudentList[student].gitHubUser];
     if (isStudenInMylikesList) {
-      handleMatch(student, userData.gitHubUser);
+      handleMatch(student, gitHubUser);
     } else {
       nextStudent();
     }
@@ -68,21 +72,26 @@ const FindStudents = props => {
   return (
     <div className="Find-container">
       <Typography>Encontre Estudantes</Typography>
-      {StudentList && StudentList[student] && (
-        <StudentCard
-          image={StudentList[student].image}
-          handleReject={nextStudent}
-          handleLike={handleLike}
-        >
-          {isMatchHappening ? (
-            <ItsAMatch />
-          ) : (
-            <StudentBrief
-              name={StudentList[student].name}
-              bio={StudentList[student].bio}
-            />
-          )}
-        </StudentCard>
+      {gitHubUser ? (
+        StudentList &&
+        StudentList[student] && (
+          <StudentCard
+            image={StudentList[student].image}
+            handleReject={nextStudent}
+            handleLike={handleLike}
+          >
+            {isMatchHappening ? (
+              <ItsAMatch />
+            ) : (
+              <StudentBrief
+                name={StudentList[student].name}
+                bio={StudentList[student].bio}
+              />
+            )}
+          </StudentCard>
+        )
+      ) : (
+        <UserMissing />
       )}
     </div>
   );
