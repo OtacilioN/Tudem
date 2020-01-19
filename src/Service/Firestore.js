@@ -40,7 +40,7 @@ export const checkLikes = async myId => {
   console.log("THE QUERY", querySnapshot);
   const likes =
     querySnapshot && querySnapshot.docs.filter(doc => doc.id === myId)[0];
-  return likes.data();
+  return likes && likes.data();
 };
 
 export const setMatch = (matchUser, myId) => {

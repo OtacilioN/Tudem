@@ -59,6 +59,7 @@ const Profile = props => {
     const userData = { gitHubUser, name, whatsapp, bio, image };
     setUser(userData);
     localStorage.setItem("userData", JSON.stringify(userData));
+    props.onSave();
   };
 
   return (
@@ -117,7 +118,7 @@ const Profile = props => {
           justifyContent: "space-around"
         }}
       >
-        <Button onClick={updateGitHub}>Atualizar GitHub</Button>
+        <Button onClick={updateGitHub}>Buscar GitHub</Button>
         <Button onClick={saveChanges} color="primary">
           Salvar
         </Button>

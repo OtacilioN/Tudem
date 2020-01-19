@@ -37,15 +37,47 @@ const useStyles = makeStyles({
   }
 });
 
-const ComponentsStack = [<MatchList />, <FindStudents />, <Profile />];
+const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+};
+
+const useWindowDimensions = () => {
+  const [windowDimensions, setWindowDimensions] = React.useState(
+    getWindowDimensions()
+  );
+
+  React.useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowDimensions;
+};
 
 function App() {
+  const userData = JSON.parse(localStorage.getItem("userData")) || {};
+  const { gitHubUser } = userData;
+  const [tab, setTab] = React.useState(gitHubUser ? 1 : 2);
   const classes = useStyles();
+  const { height } = useWindowDimensions();
 
-  const [tab, setTab] = React.useState(1);
+  const ComponentsStack = [
+    <MatchList />,
+    <FindStudents />,
+    <Profile onSave={() => setTab(1)} />
+  ];
+
   return (
     <div className="App">
-      <div className="App-body">
+      <div className="App-body" style={{ minHeight: height }}>
         <Card className={classes.card}>
           <CardContent
             style={{ flex: 1, display: "flex", flexDirection: "column" }}

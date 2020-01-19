@@ -25,7 +25,16 @@ const FindStudents = props => {
 
   const initStudentList = async () => {
     const userKeys = await getUsersKeys();
-    setKeys(userKeys);
+    const StudentsExceptMe = userKeys.filter(student => student !== gitHubUser);
+    console.log(userKeys, StudentsExceptMe);
+    // navigator.geolocation.getCurrentPosition(function(position) {
+    //   console.log(
+    //     "Localização do usuário",
+    //     position.coords.latitude,
+    //     position.coords.longitude
+    //   );
+    // });
+    setKeys(StudentsExceptMe);
     setStudentList(await getUsers());
     setStudent(userKeys[0]);
   };
@@ -50,7 +59,9 @@ const FindStudents = props => {
     };
     localStorage.setItem("matchList", JSON.stringify(matchList));
     setMatch(StudentList[student], myId);
-    navigator.vibrate([200, 200, 400, 400, 800, 800, 200, 200]);
+    if (navigator.vibrate) {
+      navigator.vibrate([200, 200, 400, 400, 800, 800, 200, 200]);
+    }
     setTimeout(() => {
       setIsMatchHappening(false);
       nextStudent();
