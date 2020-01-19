@@ -10,10 +10,12 @@ const Profile = props => {
   const storageData = JSON.parse(localStorage.getItem("userData")) || {};
   const defaultImage = "https://avatars2.githubusercontent.com/u/54108471?v=4";
 
-  const [gitHubUser, setGitHubUser] = React.useState(storageData.gitHubUser);
-  const [name, setName] = React.useState(storageData.name);
-  const [whatsapp, setWhatsapp] = React.useState(storageData.whatsapp);
-  const [bio, setBio] = React.useState(storageData.bio);
+  const [gitHubUser, setGitHubUser] = React.useState(
+    storageData.gitHubUser || ""
+  );
+  const [name, setName] = React.useState(storageData.name || "");
+  const [whatsapp, setWhatsapp] = React.useState(storageData.whatsapp || "");
+  const [bio, setBio] = React.useState(storageData.bio || "");
   const [image, setImage] = React.useState(storageData.image || defaultImage);
 
   const handleGitHubUserChange = event => {
