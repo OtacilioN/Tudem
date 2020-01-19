@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Tudem/static/css/main.8020ef43.chunk.css",
+    "main.js": "/Tudem/static/js/main.f61070e0.chunk.js",
+    "main.js.map": "/Tudem/static/js/main.f61070e0.chunk.js.map",
+    "runtime-main.js": "/Tudem/static/js/runtime-main.3eb01c40.js",
+    "runtime-main.js.map": "/Tudem/static/js/runtime-main.3eb01c40.js.map",
+    "static/js/2.660cbc16.chunk.js": "/Tudem/static/js/2.660cbc16.chunk.js",
+    "static/js/2.660cbc16.chunk.js.map": "/Tudem/static/js/2.660cbc16.chunk.js.map",
+    "index.html": "/Tudem/index.html",
+    "precache-manifest.be9d2d0780afa58ecd15638da08d7dcd.js": "/Tudem/precache-manifest.be9d2d0780afa58ecd15638da08d7dcd.js",
+    "service-worker.js": "/Tudem/service-worker.js",
+    "static/css/main.8020ef43.chunk.css.map": "/Tudem/static/css/main.8020ef43.chunk.css.map",
+    "static/js/2.660cbc16.chunk.js.LICENSE": "/Tudem/static/js/2.660cbc16.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3eb01c40.js",
+    "static/js/2.660cbc16.chunk.js",
+    "static/css/main.8020ef43.chunk.css",
+    "static/js/main.f61070e0.chunk.js"
+  ]
+}
