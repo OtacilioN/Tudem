@@ -3,6 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { setUser } from "../Service/Firestore";
+import { requestPermission } from "../Service/PushNotification";
 import "./Profile.css";
 import axios from "axios";
 
@@ -59,6 +60,7 @@ const Profile = props => {
     const userData = { gitHubUser, name, whatsapp, bio, image };
     setUser(userData);
     localStorage.setItem("userData", JSON.stringify(userData));
+    requestPermission();
     props.onSave();
   };
 

@@ -3,6 +3,7 @@ import React from "react";
 const MatchItem = props => {
   return (
     <div
+      key={props.key}
       style={{ display: "flex", borderTop: "1px solid black", marginTop: 16 }}
     >
       <div

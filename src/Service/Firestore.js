@@ -1,28 +1,25 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-import firebaseKeys from "./firebaseKeys.json";
-
-firebase.initializeApp(firebaseKeys);
-
-const db = firebase.firestore();
 
 export const setUser = user => {
+  const db = firebase.firestore();
   db.collection("users")
     .doc(user.gitHubUser)
     .set(user, { merge: true });
 };
 
 export const getUsers = async () => {
+  const db = firebase.firestore();
   const querySnapshot = await db.collection("users").get();
   const users = {};
   querySnapshot.forEach(doc => {
     users[doc.id] = doc.data();
   });
-  console.log(users);
   return users;
 };
 
 export const likeUser = (user, myId) => {
+  const db = firebase.firestore();
   const setObject = {};
   setObject[myId] = true;
   db.collection("likes")
@@ -36,14 +33,15 @@ export const likeUser = (user, myId) => {
 // }
 
 export const checkLikes = async myId => {
+  const db = firebase.firestore();
   const querySnapshot = await db.collection("likes").get();
-  console.log("THE QUERY", querySnapshot);
   const likes =
     querySnapshot && querySnapshot.docs.filter(doc => doc.id === myId)[0];
   return likes && likes.data();
 };
 
 export const setMatch = (matchUser, myId) => {
+  const db = firebase.firestore();
   const newStudentMine = {};
   const newStudentYours = {};
   newStudentMine[matchUser.gitHubUser] = true;
@@ -58,7 +56,9 @@ export const setMatch = (matchUser, myId) => {
 };
 
 export const getMatch = async myId => {
+  const db = firebase.firestore();
   const querySnapshot = await db.collection("matchs").get();
-  const userMatchs = querySnapshot.filter(doc => doc.id === myId);
-  return userMatchs;
+  const userMatchs =
+    querySnapshot && querySnapshot.docs.filter(doc => doc.id === myId)[0];
+  return userMatchs && userMatchs.data();
 };
