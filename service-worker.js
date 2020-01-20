@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Tudem/precache-manifest.932cf51c194ee095a2a69d5545984a99.js"
+  "/Tudem/precache-manifest.2de1694d9ab108a9d35f08a7ffdf6c2f.js"
 );
 
 self.addEventListener('message', (event) => {
