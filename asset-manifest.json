@@ -7,6 +7,7 @@
     "runtime-main.js.map": "/Tudem/static/js/runtime-main.3eb01c40.js.map",
     "static/js/2.52170303.chunk.js": "/Tudem/static/js/2.52170303.chunk.js",
     "static/js/2.52170303.chunk.js.map": "/Tudem/static/js/2.52170303.chunk.js.map",
+    "firebase-messaging-sw.js": "/Tudem/firebase-messaging-sw.js",
     "index.html": "/Tudem/index.html",
     "precache-manifest.2de1694d9ab108a9d35f08a7ffdf6c2f.js": "/Tudem/precache-manifest.2de1694d9ab108a9d35f08a7ffdf6c2f.js",
     "service-worker.js": "/Tudem/service-worker.js",
