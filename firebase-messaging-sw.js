@@ -7,20 +7,13 @@ importScripts("https://www.gstatic.com/firebasejs/7.7.0/firebase-messaging.js");
 // Initialize the Firebase app in the service worker by passing in the
 // messagingSenderId.
 firebase.initializeApp({
-  messagingSenderId: "153126974837"
+  apiKey: "AIzaSyDirMjRQSt0dkNCSCuMq4UTkaQv9M6-y80",
+  authDomain: "tudem-acc4a.firebaseapp.com",
+  projectId: "tudem-acc4a",
+  messagingSenderId: "153126974837",
+  appId: "1:153126974837:web:8cbf120c29ccbbabb04f3c"
 });
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = firebase.messaging();
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("../firebase-messaging-sw.js")
-    .then(function(registration) {
-      console.log("Registration successful, scope is:", registration.scope);
-    })
-    .catch(function(err) {
-      console.log("Service worker registration failed, error:", err);
-    });
-}
